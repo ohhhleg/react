@@ -56,7 +56,7 @@ class Login extends React.Component  {
                                 登录
                             </Button>
                             <p style={{display: 'flex', justifyContent: 'space-between'}}>
-                                <span >或 现在就去注册!</span>
+                                <span >或现在就去注册!</span>
                             </p>
                         </FormItem>
                     </Form>

@@ -6,10 +6,12 @@ class BreadcrumbCustom extends React.Component {
     render() {
         const first = <Breadcrumb.Item>{this.props.first}</Breadcrumb.Item> || '';
         const second = <Breadcrumb.Item>{this.props.second}</Breadcrumb.Item> || '';
+        // console.log(first);
+        // console.log(second);
         return (
             <span>
                 <Breadcrumb style={{ margin: '12px 0' }}>
-                    <Breadcrumb.Item><Link to={'/index'}>首页</Link></Breadcrumb.Item>
+                    <Breadcrumb.Item><Link to={'/index/home'}>首页</Link></Breadcrumb.Item>
                         {first}
                         {second}
                 </Breadcrumb>
