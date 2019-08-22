@@ -6,13 +6,14 @@ import '../style/index.less'
 import IndexContent from '../components/IndexContent/IndexContent'
 import Animations from './Animations'
 import Case from './Case'
-import User3 from './User3'
+import Problem from './Problem'
+import UploadFile from './UploadFile';
+import Information from './Information'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 class Index extends React.Component {
   rootSubmenuKeys = ['sub1', 'sub2', 'sub3'];
-
 
   state = {
     collapsed: false,
@@ -20,6 +21,21 @@ class Index extends React.Component {
     openKeys: ['sub1'],
 
   };
+
+//   init = async()=>{
+//     // console.log(this);
+//     let data =await request('https://www.easy-mock.com/mock/5d52606ab22d3f6269ad2963/test/animate', {
+//         method: 'GET',
+//     })
+//     // console.log(data.data);
+//     this.setState({
+//         animations:data.data
+//     })
+// }
+// componentDidMount(){
+//     this.init()
+// }
+
 
   onOpenChange = openKeys => {
     const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
@@ -87,13 +103,17 @@ class Index extends React.Component {
               background: '#fff',
               height:680,
               maxHeight: 680,
+              overflowX:'hidden',
               overflowY:'auto'
             }}
           >
             <Route path="/index/home" component={IndexContent}/>
             <Route path="/index/animation" component={Animations}/>
             <Route path="/index/case" component={Case}/>
-            <Route path="/index/user3" component={User3}/>
+            <Route path="/index/problem" component={Problem}/>
+            <Route path="/index/uploadfile" component={UploadFile}/>
+            <Route path="/index/information" component={Information}/>
+
           </Content>
         </Layout>
       </Layout>

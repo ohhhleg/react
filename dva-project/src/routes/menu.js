@@ -27,28 +27,28 @@ export default [
         }, {
             key: 3,
             title: 'Case',
-            url: '/index/Case'
+            url: '/index/case'
         }, {
             key: 4,
-            title: 'user3',
-            url: '/index/user3'
+            title: 'Problem',
+            url: '/index/problem'
         }]
     },
     {
         key: 'sub3',
         title:
             <span>
-                <Icon type="video-camera" />
-                <span>video-camera</span>
+                <Icon type="file" />
+                <span>file</span>
             </span>,
         options: [{
             key: 5,
-            title: 'video-camera1',
-            url: '/index/video-camera1'
+            title: 'UploadFile',
+            url: '/index/uploadfile'
         }, {
             key: 6,
-            title: 'video-camera2',
-            url: '/index/video-camera2'
+            title: 'Information',
+            url: '/index/information'
         }]
     },
 ]

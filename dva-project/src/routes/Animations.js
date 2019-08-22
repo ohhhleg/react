@@ -1,13 +1,20 @@
 import React,{Component} from 'react';
 import {Row, Col, Card, Switch } from 'antd';
+import request from '../utils/request'
 import Breadcrumb from '../components/Breadcrumb';
 import '../style/lib/animate.css'
 
 export default class Animations extends Component{
-    state={
-        animated:false,
-        animatedOne:-1
+    constructor(props){
+        super(props);
+        this.state={        
+            animated:false,
+            animatedOne:-1,
+                    // 动画名称数组
+                    animations:[]
+        }
     }
+  
     // 所有动画
     animatedAll=(checked)=>{
         checked && this.setState({animated:true});
@@ -21,21 +28,22 @@ export default class Animations extends Component{
     animatedOneOver=()=>{
         this.setState({animatedOne:-1});
     }
+    init = async()=>{
+        // console.log(this);
+        let data =await request('https://www.easy-mock.com/mock/5d52606ab22d3f6269ad2963/test/animate', {
+            method: 'GET',
+        })
+        // console.log(data.data);
+        this.setState({
+            animations:data.data
+        })
+    }
+    componentDidMount(){
+        this.init()
+    }
+    
     render(){
-        // 动画名称数组
-        const animations=[ 'bounce', 'flash', 'rubberBand', 'shake', 'headShake',
-        'swing', 'tada', 'wobble', 'jello', 'bounceIn', 'bounceInDown',
-        'bounceInLeft', 'bounceInRight', 'bounceOut', 'bounceOutDown', 'bounceOutLeft',
-        'bounceOutLeft', 'bounceOutUp', 'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft',
-        'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig', 'fadeOut',
-        'fadeOutDown', 'fadeOutDownBig', 'fadeOutLeft', 'fadeOutLeftBig', 'fadeOutRight', 'fadeOutRightBig',
-        'fadeOutUp', 'fadeOutUpBig', 'flipInX', 'flipInY', 'flipOutX', 'flipOutY',
-        'lightSpeedIn', 'lightSpeedOut', 'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft',
-        'rotateInUpRight', 'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
-        'hinge', 'jackInTheBox', 'rollIn', 'rollOut','zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp',
-        'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp', 'slideInDown',
-        'slideInLeft', 'slideInRight', 'slideInUp', 'slideOutDown', 'slideOutLeft', 'slideOutRight', 'slideOutUp'
-    ]
+      
         return(
             <div>
                 <Breadcrumb first='用户' second='动画'/>
@@ -47,7 +55,7 @@ export default class Animations extends Component{
                     </span>
                 </Row>
                 <Row gutter={20}>
-                    {animations.map((k,i)=>(
+                    {this.state.animations.map((k,i)=>(
                         <Col md={6} key={i} >
                             <div>
                             <Card className={`${this.state.animated || (this.state.animatedOne === i) ? 'animated' : ''} ${this.state.animated || (this.state.animatedOne === i) ? 'infinite' : ''} ${k}`}
