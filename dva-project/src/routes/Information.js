@@ -49,12 +49,18 @@ export default class Information extends React.Component {
     ]
   };
 
-  showDrawer = (id) => {
-    console.log(id);
+  showDrawer = () => {
       this.setState({
         visible: true,
       });
   };
+
+  // showDrawer = (id) => {
+  //   console.log(id);
+  //     this.setState({
+  //       visible: true,
+  //     });
+  // };
 
   onClose = () => {
     this.setState({
@@ -73,7 +79,8 @@ export default class Information extends React.Component {
             <List.Item
               key={item.id}
               actions={[
-                <a onClick={this.showDrawer(item.id)}>
+                <a onClick={this.showDrawer}>
+                {/* <a onClick={this.showDrawer(item.id)}> */}
                   View Profile
                 </a>,
               ]}
@@ -90,7 +97,7 @@ export default class Information extends React.Component {
         />
 
         <Drawer
-          width={640}
+          width={600}
           placement="right"
           closable={false}
           onClose={this.onClose}

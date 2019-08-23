@@ -3,12 +3,13 @@ import React from 'react'
 import {Route,Link } from 'dva/router';
 import menu from './menu'
 import '../style/index.less'
-import IndexContent from '../components/IndexContent/IndexContent'
-import Animations from './Animations'
-import Case from './Case'
-import Problem from './Problem'
+import IndexContent from '../components/IndexContent/IndexContent';
+import Animations from './Animations';
+import Case from './Case';
+import Problem from './Problem';
 import UploadFile from './UploadFile';
-import Information from './Information'
+import Information from './Information';
+import Map from './Map'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -113,6 +114,7 @@ class Index extends React.Component {
             <Route path="/index/problem" component={Problem}/>
             <Route path="/index/uploadfile" component={UploadFile}/>
             <Route path="/index/information" component={Information}/>
+            <Route path="/index/map" component={Map}/>
 
           </Content>
         </Layout>

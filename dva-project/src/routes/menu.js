@@ -49,6 +49,10 @@ export default [
             key: 6,
             title: 'Information',
             url: '/index/information'
+        },{
+            key: 7,
+            title: 'Map',
+            url: '/index/map'
         }]
     },
 ]
