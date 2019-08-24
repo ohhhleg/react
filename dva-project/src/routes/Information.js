@@ -1,5 +1,6 @@
 import React from 'react';
 import { Drawer, List, Avatar, Divider, Col, Row } from 'antd';
+import request from '../utils/request'
 import Breadcrumb from '../components/Breadcrumb'
 const pStyle = {
   fontSize: 16,
@@ -32,41 +33,82 @@ const DescriptionItem = ({ title, content }) => (
 );
 
 export default class Information extends React.Component {
-  state = { 
+  constructor(props) {
+    super(props);
+  this.state = { 
     visible: false ,
-    id:'',
-    inf:[
-      {
-        id:1,
-        name: 'Lily',
-        zhiwei:'Progresser',
-      },
-      {
-        id:2,
-        name:'zzzz',
-        zhiwei:'Progresser 1111111111111',
-      }
-    ]
+    ind:0,
+    inf:
+      [
+      // {
+      //   id:1,
+      //   name: 'Lily',
+      //   zhiwei:'Progresser',
+      //   email:'AntDesign@example.com',
+      //   city:'HangZhou',
+      //   country:'China',
+      //   birthday:'May-8-1990',
+      //   message:'blahblahblah',
+      //   supervisor:'OLD',
+      //   phoneNumber:'+86 182 0000 0000', 
+
+      // },
+      // {
+      //   id:2,
+      //   name:'ohhhleg',
+      //   zhiwei:'Progresser+1',
+      //   email:'AntDesign@example.com````',
+      //   city:'GuangZhou',
+      //   country:'China',
+      //   birthday:'Apr-19-1996',
+      //   supervisor:'YAO',
+      //   message:'xxxxxxxxxxxxxxxxxxxxxxx',
+      //   phoneNumber:'+86 181 0000 0000', 
+      // }
+      ]
   };
+  }
 
-  showDrawer = () => {
-      this.setState({
-        visible: true,
-      });
-  };
-
-  // showDrawer = (id) => {
-  //   console.log(id);
-  //     this.setState({
-  //       visible: true,
-  //     });
-  // };
-
-  onClose = () => {
-    this.setState({
-      visible: false,
+  // init = async () => {
+  //   let data =await request('http://localhost:3000/inf', {
+  //     method:'GET'
+  //   });
+  //   this.setState({
+  //     inf:data.data
+  //   })
+  //   console.log(this.state.inf[0]);
+  //   console.log(this.state.ind);
+  // }
+async componentDidMount(){
+  let data =await request('http://localhost:3000/inf', {
+      method:'GET'
     });
+    this.setState({
+      inf:data.data
+    })
+  this.showDrawer=(i)=> {
+      this.setState({
+        visible:true,
+        ind:i,
+      },()=>{
+        console.log(this.state.inf[(this.state.ind)*1].name);
+        console.log(this.state.inf);
+        console.log(this.state.ind);
+      });
+      
   };
+  
+    this.onClose = () => {
+      console.log(this.state.inf[this.state.ind].name);
+      console.log(this.state.ind);
+      this.setState({
+        visible: false,
+      });
+    };
+}
+
+    
+
 
   render() {
     return (
@@ -75,12 +117,11 @@ export default class Information extends React.Component {
         <List
           dataSource={this.state.inf}
           bordered
-          renderItem={item => (
+          renderItem={(item,index) => (
             <List.Item
               key={item.id}
               actions={[
-                <a onClick={this.showDrawer}>
-                {/* <a onClick={this.showDrawer(item.id)}> */}
+                <a onClick={()=>this.showDrawer(index)}>
                   View Profile
                 </a>,
               ]}
@@ -102,49 +143,43 @@ export default class Information extends React.Component {
           closable={false}
           onClose={this.onClose}
           visible={this.state.visible}
+          destroyOnClose={true}
         >
           <p style={{ ...pStyle, marginBottom: 24 }}>User Profile</p>
           <p style={pStyle}>Personal</p>
           <Row>
             <Col span={12}>
-              <DescriptionItem title="Full Name" content="zzzzz" />{' '}
+              {console.log(this.state.inf[(this.state.ind)*1])}
+              {/* <DescriptionItem title="Full Name" content={this.state.inf[(this.state.ind)*1].name}/> */}
             </Col>
             <Col span={12}>
-              <DescriptionItem title="Account" content="AntDesign@example.com" />
+              {/* <DescriptionItem title="Account" content={this.state.inf[(this.state.ind)*1].email} /> */}
             </Col>
           </Row>
           <Row>
             <Col span={12}>
-              <DescriptionItem title="City" content="HangZhou" />
+              {/* <DescriptionItem title="City" content={this.state.inf[(this.state.ind)*1].city} /> */}
             </Col>
             <Col span={12}>
-              <DescriptionItem title="Country" content="China🇨🇳" />
+              {/* <DescriptionItem title="Country" content={this.state.inf[(this.state.ind)*1].country}/> */}
             </Col>
           </Row>
           <Row>
             <Col span={12}>
-              <DescriptionItem title="Birthday" content="February 2,1900" />
+              {/* <DescriptionItem title="Birthday" content={this.state.inf[(this.state.ind)*1].birthday} /> */}
             </Col>
             <Col span={12}>
-              <DescriptionItem title="Website" content="-" />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <DescriptionItem
-                title="Message"
-                content="Make things as simple as possible but no simpler."
-              />
+              {/* <DescriptionItem title="Message" content={this.state.inf[(this.state.ind)*1].message} /> */}
             </Col>
           </Row>
           <Divider />
           <p style={pStyle}>Company</p>
           <Row>
             <Col span={12}>
-              <DescriptionItem title="Position" content="Programmer" />
+              {/* <DescriptionItem title="Position" content="Programmer" /> */}
             </Col>
             <Col span={12}>
-              <DescriptionItem title="Responsibilities" content="Coding" />
+              {/* <DescriptionItem title="Responsibilities" content="Coding" /> */}
             </Col>
           </Row>
           <Row>
@@ -152,7 +187,7 @@ export default class Information extends React.Component {
               <DescriptionItem title="Department" content="AFX" />
             </Col>
             <Col span={12}>
-              <DescriptionItem title="Supervisor" content={<a>Lin</a>} />
+              {/* <DescriptionItem title="Supervisor" content={<a>{this.state.inf[(this.state.ind)*1].supervisor}</a>} /> */}
             </Col>
           </Row>
           <Row>
@@ -170,19 +205,7 @@ export default class Information extends React.Component {
               <DescriptionItem title="Email" content="AntDesign@example.com" />
             </Col>
             <Col span={12}>
-              <DescriptionItem title="Phone Number" content="+86 181 0000 0000" />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <DescriptionItem
-                title="Github"
-                content={
-                  <a href="http://github.com/ant-design/ant-design/">
-                    github.com/ant-design/ant-design/
-                  </a>
-                }
-              />
+              {/* <DescriptionItem title="Phone Number" content={this.state.inf[(this.state.ind)*1].phoneNumber}/> */}
             </Col>
           </Row>
         </Drawer>

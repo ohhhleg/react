@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactQMap from 'react-qmap';
-import request from '../utils/request'
+// import request from '../utils/request'
 const getContianer = dom => {
     const middleControl = document.createElement('div');
     middleControl.style.cssText =
@@ -11,24 +11,24 @@ const getContianer = dom => {
 
 export default class Tencent extends Component {
 
-
-    // componentDidMount() {
-    //     // 获取地理位置
-    //     console.log('start');
-
-    //     fetch('https://apis.map.qq.com/ws/location/v1/ip?key=UN6BZ-MP2W6-XWCSX-M2ATU-QORGZ-OWFOE', {
-    //         method: 'GET',
-    //         mode: 'cors',
-    //     }).then(res => {
-    //         return res.json();
-    //     }).then(json => {
-    //         console.log('获取的结果', json.data);
-    //         return json;
-    //     }).catch(err => {
-    //         console.log('请求错误', err);
-    //     })
+    // state={
+    //     zuobiao:{}
     // }
 
+    // init = async () => {
+    //     console.log(this);
+    //     let data = await request('https://apis.map.qq.com/ws/location/v1/ip?key=UN6BZ-MP2W6-XWCSX-M2ATU-QORGZ-OWFOE', {
+    //       method: 'GET',
+    //     })
+    //     console.log(data.data);
+    //     this.setState({
+    //       zuobiao: data.data
+    //     })
+    //   }
+    //   componentDidMount() {
+    //     this.init()
+    //   }
+    
     render() {
         return (
             <ReactQMap
