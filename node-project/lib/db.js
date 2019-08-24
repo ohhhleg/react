@@ -5,7 +5,7 @@ const {
 // Connection URL
 const url = 'mongodb://localhost:27017';
 // Database Name
-const dbName = 'tushu';
+const dbName = 'htgl';
 // 连接
 const connect = () => {
     return new Promise((resolve, reject) => {
