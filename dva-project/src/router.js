@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch,Redirect } from 'dva/router';
+import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Login from './routes/Login'
 import Index from './routes/Index'
 

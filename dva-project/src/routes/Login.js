@@ -1,23 +1,22 @@
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import '../style/login.less';
+
 const FormItem = Form.Item;
 
 class Login extends React.Component  {
-
-    componentDidUpdate(prevProps) { 
-        const { auth: nextAuth = {}, history } = this.props;
-        if (nextAuth.data && nextAuth.data.uid) { // 判断是否登陆
-            localStorage.setItem('user', JSON.stringify(nextAuth.data));
-            history.push('/');
-        }
-    }
+    
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                if (values.userName === 'admin' && values.password === 'admin');
+                if (values.userName === 'admin' && values.password === 'admin'){
+                    let loginData = {};
+                    loginData.userName = values.userName;
+                }
+                this.props.history.push('/index')
+
             }
         });
     };

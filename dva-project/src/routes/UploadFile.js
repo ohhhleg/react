@@ -57,7 +57,7 @@ export default class UploadFile extends React.Component {
                     listType="picture-card"//上传列表的内建样式
                     className="avatar-uploader"
                     showUploadList={false}//是否展示文件列表, 可设为一个对象
-                    action=""//上传的地址
+                    action="//jsonplaceholder.typicode.com/posts/"//上传的地址,这里用了虚拟json服务器
                     beforeUpload={beforeUpload}//上传文件之前的钩子，参数为上传的文件
                     onChange={this.handleChange}//上传文件改变时的状态
                 >

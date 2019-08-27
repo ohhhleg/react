@@ -38,37 +38,37 @@ export default class Information extends React.Component {
   this.state = { 
     visible: false ,
     ind:0,
-    inf:
-      [
-      // {
-      //   id:1,
-      //   name: 'Lily',
-      //   zhiwei:'Progresser',
-      //   email:'AntDesign@example.com',
-      //   city:'HangZhou',
-      //   country:'China',
-      //   birthday:'May-8-1990',
-      //   message:'blahblahblah',
-      //   supervisor:'OLD',
-      //   phoneNumber:'+86 182 0000 0000', 
+    inf:[
+      // 只能用用死数据。。。。。。。。。
+      {
+        id:1,
+        name: 'Lily',
+        zhiwei:'Progresser',
+        email:'AntDesign@example.com',
+        city:'HangZhou',
+        country:'China',
+        birthday:'May-8-1990',
+        message:'blahblahblah',
+        supervisor:'OLD',
+        phoneNumber:'+86 182 0000 0000', 
 
-      // },
-      // {
-      //   id:2,
-      //   name:'ohhhleg',
-      //   zhiwei:'Progresser+1',
-      //   email:'AntDesign@example.com````',
-      //   city:'GuangZhou',
-      //   country:'China',
-      //   birthday:'Apr-19-1996',
-      //   supervisor:'YAO',
-      //   message:'xxxxxxxxxxxxxxxxxxxxxxx',
-      //   phoneNumber:'+86 181 0000 0000', 
-      // }
+      },
+      {
+        id:2,
+        name:'ohhhleg',
+        zhiwei:'Progresser+1',
+        email:'AntDesign@example.com````',
+        city:'GuangZhou',
+        country:'China',
+        birthday:'Apr-19-1996',
+        supervisor:'YAO',
+        message:'xxxxxxxxxxxxxxxxxxxxxxx',
+        phoneNumber:'+86 181 0000 0000', 
+      }
       ]
   };
   }
-
+  //1.阿伟死了，数据什么的都请求到又存入state了，为什么在V层不能渲染出来
   // init = async () => {
   //   let data =await request('http://localhost:3000/inf', {
   //     method:'GET'
@@ -79,35 +79,34 @@ export default class Information extends React.Component {
   //   console.log(this.state.inf[0]);
   //   console.log(this.state.ind);
   // }
-async componentDidMount(){
-  let data =await request('http://localhost:3000/inf', {
-      method:'GET'
-    });
-    this.setState({
-      inf:data.data
-    })
+ componentDidMount(){
+  // //  2阿伟又死了,还是拿不到
+  // let data =await request('http://localhost:3000/inf', {
+  //     method:'GET'
+  //   });
+  //   this.setState({
+  //     inf:data.data
+  //   })
   this.showDrawer=(i)=> {
       this.setState({
         visible:true,
         ind:i,
       },()=>{
-        console.log(this.state.inf[(this.state.ind)*1].name);
-        console.log(this.state.inf);
-        console.log(this.state.ind);
+        // console.log(this.state.inf[(this.state.ind)*1].name);
+        // console.log(this.state.inf);
+        // console.log(this.state.ind);
       });
       
   };
   
     this.onClose = () => {
-      console.log(this.state.inf[this.state.ind].name);
-      console.log(this.state.ind);
+      // console.log(this.state.inf[this.state.ind].name);
+      // console.log(this.state.ind);
       this.setState({
         visible: false,
       });
     };
 }
-
-    
 
 
   render() {
@@ -149,37 +148,38 @@ async componentDidMount(){
           <p style={pStyle}>Personal</p>
           <Row>
             <Col span={12}>
-              {console.log(this.state.inf[(this.state.ind)*1])}
-              {/* <DescriptionItem title="Full Name" content={this.state.inf[(this.state.ind)*1].name}/> */}
+            {console.log(this.state.inf[(this.state.ind)*1])}
+              {console.log(this.state.inf[(this.state.ind)*1].name)}
+              <DescriptionItem title="Full Name" content={this.state.inf[(this.state.ind)*1].name}/>
             </Col>
             <Col span={12}>
-              {/* <DescriptionItem title="Account" content={this.state.inf[(this.state.ind)*1].email} /> */}
-            </Col>
-          </Row>
-          <Row>
-            <Col span={12}>
-              {/* <DescriptionItem title="City" content={this.state.inf[(this.state.ind)*1].city} /> */}
-            </Col>
-            <Col span={12}>
-              {/* <DescriptionItem title="Country" content={this.state.inf[(this.state.ind)*1].country}/> */}
+              <DescriptionItem title="Account" content={this.state.inf[(this.state.ind)*1].email} />
             </Col>
           </Row>
           <Row>
             <Col span={12}>
-              {/* <DescriptionItem title="Birthday" content={this.state.inf[(this.state.ind)*1].birthday} /> */}
+              <DescriptionItem title="City" content={this.state.inf[(this.state.ind)*1].city} />
             </Col>
             <Col span={12}>
-              {/* <DescriptionItem title="Message" content={this.state.inf[(this.state.ind)*1].message} /> */}
+              <DescriptionItem title="Country" content={this.state.inf[(this.state.ind)*1].country}/>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <DescriptionItem title="Birthday" content={this.state.inf[(this.state.ind)*1].birthday} />
+            </Col>
+            <Col span={12}>
+              <DescriptionItem title="Message" content={this.state.inf[(this.state.ind)*1].message} />
             </Col>
           </Row>
           <Divider />
           <p style={pStyle}>Company</p>
           <Row>
             <Col span={12}>
-              {/* <DescriptionItem title="Position" content="Programmer" /> */}
+              <DescriptionItem title="Position" content="Programmer" />
             </Col>
             <Col span={12}>
-              {/* <DescriptionItem title="Responsibilities" content="Coding" /> */}
+              <DescriptionItem title="Responsibilities" content="Coding" />
             </Col>
           </Row>
           <Row>
@@ -187,7 +187,7 @@ async componentDidMount(){
               <DescriptionItem title="Department" content="AFX" />
             </Col>
             <Col span={12}>
-              {/* <DescriptionItem title="Supervisor" content={<a>{this.state.inf[(this.state.ind)*1].supervisor}</a>} /> */}
+              <DescriptionItem title="Supervisor" content={<a>{this.state.inf[(this.state.ind)*1].supervisor}</a>} />
             </Col>
           </Row>
           <Row>
@@ -205,7 +205,7 @@ async componentDidMount(){
               <DescriptionItem title="Email" content="AntDesign@example.com" />
             </Col>
             <Col span={12}>
-              {/* <DescriptionItem title="Phone Number" content={this.state.inf[(this.state.ind)*1].phoneNumber}/> */}
+              <DescriptionItem title="Phone Number" content={this.state.inf[(this.state.ind)*1].phoneNumber}/>
             </Col>
           </Row>
         </Drawer>
